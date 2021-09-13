@@ -2,7 +2,7 @@
 	Process {
 		# Get fucks
 		Try {
-			$fucks = (Invoke-WebRequest -Uri 'https://fuckbudget.azurewebsites.net/api/HttpTrigger').Content | ConvertFrom-Json
+			$fucks = (Invoke-WebRequest -Uri 'https://fuckbudget.azurewebsites.net/api/FuckBudget_HttpTrigger').Content | ConvertFrom-Json
 		}
 		Catch {
 			Write-Warning 'Error occurred receiving fuck budget. Please try again later.'
