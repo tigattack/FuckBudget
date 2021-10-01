@@ -1,6 +1,8 @@
 # FuckBudget
 Have you run out of fucks to give? Now you can find out with FuckBudget.  
-Your fuck budget is randomly generated on each run.
+Your fuck budget and a relevant message is randomly generated on each run.
+
+![image](https://user-images.githubusercontent.com/10629864/135592414-3df07e6c-07fc-4489-92ef-f90e5ae4c2b8.png)
 
 ## Usage
 
