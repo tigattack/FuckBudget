@@ -1,1 +1,4 @@
 .vscode
+.terraform
+.terraform.lock.hcl
+function.zip
