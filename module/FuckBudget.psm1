@@ -19,7 +19,7 @@
 			If ($null -ne $fucks.UsableFucks) {
 				Write-Output "Usable Fucks: $(($fucks.UsableFucks) -join ', ')"
 			}
-			
+
 			# Output total number of usable fucks
 			Write-Output "Total Usable: $($fucks.TotalUsable)"
 
@@ -27,7 +27,6 @@
 			Write-Output "`n$($fucks.FuckMessage)`n"
 		}
 		Catch {
-
 			Write-Warning 'Error occurred outputting fuck budget.'
 			Throw $_.Exception.Message
 		}
