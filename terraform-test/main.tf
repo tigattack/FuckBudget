@@ -1,13 +1,14 @@
 # ZIP function file(s)
 data "archive_file" "file_function_app" {
   type        = "zip"
-  source_dir  = "../function"
+  source_dir  = "../fbudget"
   output_path = "function.zip"
 }
 
 # Define command to publish code to Azure Functions
 locals {
-    publish_code_command = "az webapp deployment source config-zip --resource-group ${azurerm_resource_group.group.name} --name ${azurerm_windows_function_app.FuckBudget.name} --src ${data.archive_file.file_function_app.output_path} && rm -f ${data.archive_file.file_function_app.output_path}"
+    publish_code_command = "az webapp deployment source config-zip --resource-group ${azurerm_resource_group.group.name} --name ${azurerm_windows_function_app.FuckBudget.name} --src ${data.archive_file.file_function_app.output_path}"
+    rm_command = "rm -f ${data.archive_file.file_function_app.output_path}"
 }
 
 
@@ -22,7 +23,7 @@ resource "azurerm_resource_group" "group" {
 resource "azurerm_storage_account" "storage" {
   depends_on = [azurerm_resource_group.group]
 
-  name                     = "fuckbudgetsa"
+  name                     = "fuckbudgetsarm"
   resource_group_name      = azurerm_resource_group.group.name
   location                 = azurerm_resource_group.group.location
 
