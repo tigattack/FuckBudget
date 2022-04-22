@@ -1,7 +1,7 @@
 # ZIP function file(s)
 data "archive_file" "file_function_app" {
   type        = "zip"
-  source_dir  = "../fbudget"
+  source_dir  = "../function"
   output_path = "function.zip"
 }
 
@@ -23,7 +23,7 @@ resource "azurerm_resource_group" "group" {
 resource "azurerm_storage_account" "storage" {
   depends_on = [azurerm_resource_group.group]
 
-  name                     = "fuckbudgetsarm"
+  name                     = "fuckbudgetsa"
   resource_group_name      = azurerm_resource_group.group.name
   location                 = azurerm_resource_group.group.location
 
@@ -52,7 +52,7 @@ resource "azurerm_windows_function_app" "FuckBudget" {
     azurerm_service_plan.asp,
   ]
 
-  name                = "FuckBudget-test"
+  name                = "FuckBudget"
   resource_group_name = azurerm_resource_group.group.name
   location            = azurerm_resource_group.group.location
 
@@ -90,6 +90,9 @@ resource "null_resource" "function_app_publish" {
 }
 
 # Output function app URL
+locals {
+  function_spec = jsondecode(file("${path.module}/../function/budget/function.json"))
+}
 output "function_app_url" {
-  value = azurerm_windows_function_app.FuckBudget.default_hostname
+  value = "https://${azurerm_windows_function_app.FuckBudget.name}.azurewebsites.net/api/${local.function_spec.bindings[0].route}"
 }

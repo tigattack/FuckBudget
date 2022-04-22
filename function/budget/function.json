@@ -4,7 +4,8 @@
       "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
-      "name": "budget",
+      "name": "Request",
+      "route": "FuckBudget_HttpTrigger",
       "methods": [
         "get"
       ]

@@ -21,7 +21,6 @@
   },
   "extensions": {
     "http": {
-      "routePrefix": "",
       "dynamicThrottlesEnabled": false
     }
   },
