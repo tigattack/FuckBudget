@@ -7,7 +7,8 @@ data "archive_file" "file_function_app" {
 
 # Define command to publish code to Azure Functions
 locals {
-    publish_code_command = "az webapp deployment source config-zip --resource-group ${azurerm_resource_group.group.name} --name ${azurerm_windows_function_app.FuckBudget.name} --src ${data.archive_file.file_function_app.output_path} && rm -f ${data.archive_file.file_function_app.output_path}"
+    publish_code_command = "az webapp deployment source config-zip --resource-group ${azurerm_resource_group.group.name} --name ${azurerm_windows_function_app.FuckBudget.name} --src ${data.archive_file.file_function_app.output_path}"
+    rm_command = "rm -f ${data.archive_file.file_function_app.output_path}"
 }
 
 
@@ -51,7 +52,7 @@ resource "azurerm_windows_function_app" "FuckBudget" {
     azurerm_service_plan.asp,
   ]
 
-  name                = "FuckBudget-test"
+  name                = "FuckBudget"
   resource_group_name = azurerm_resource_group.group.name
   location            = azurerm_resource_group.group.location
 
@@ -89,6 +90,9 @@ resource "null_resource" "function_app_publish" {
 }
 
 # Output function app URL
+locals {
+  function_spec = jsondecode(file("${path.module}/../function/budget/function.json"))
+}
 output "function_app_url" {
-  value = azurerm_windows_function_app.FuckBudget.default_hostname
+  value = "https://${azurerm_windows_function_app.FuckBudget.name}.azurewebsites.net/api/${local.function_spec.bindings[0].route}"
 }

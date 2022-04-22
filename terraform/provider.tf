@@ -1,5 +1,10 @@
 terraform {
-  backend "local" {}
+  backend "azurerm" {
+    resource_group_name  = "tfstate_RG"
+    storage_account_name = "tfstate14394"
+    container_name       = "tfstate-fuckbudget"
+    key                  = "terraform.tfstate"
+  }
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
@@ -18,4 +23,5 @@ terraform {
 
 provider "azurerm" {
   features {}
+  subscription_id = "9f74b8e4-4971-43b8-9375-a0e0a633af3a"
 }

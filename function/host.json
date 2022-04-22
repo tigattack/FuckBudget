@@ -1,0 +1,30 @@
+{
+  "version": "2.0",
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[2.*, 3.0.0)"
+  },
+  "functionTimeout": "00:10:00",
+  "logging": {
+    "fileLoggingMode": "never",
+    "logLevel": {
+      "default": "Warning",
+      "Host.Results":"Information"
+    },
+    "applicationInsights": {
+      "enablePerformanceCountersCollection" : false,
+      "samplingSettings": {
+        "isEnabled": false,
+        "excludedTypes": "Request"
+      }
+    }
+  },
+  "extensions": {
+    "http": {
+      "dynamicThrottlesEnabled": false
+    }
+  },
+  "managedDependency": {
+    "enabled": true
+  }
+}

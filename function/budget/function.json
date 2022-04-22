@@ -1,14 +1,14 @@
 {
   "bindings": [
     {
-      "name": "Request",
       "authLevel": "anonymous",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "Request",
+      "route": "FuckBudget_HttpTrigger",
       "methods": [
         "get"
-      ],
-      "direction": "in",
-      "route": "budget",
-      "type": "httpTrigger"
+      ]
     },
     {
       "type": "http",
